@@ -1,10 +1,18 @@
+"use client"
+
 import { Button } from "@/components/atoms/Button";
 import { Text } from "@/components/atoms/Text";
 import { Badge } from "@/components/atoms/Badge";
 import { Counter } from "@/components/atoms/Counter";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/molecules/Card";
 
+import { useToast } from "@/components/ui/toast/hooks";
+
+
 export default function Home() {
+
+ const { addToast } = useToast();
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-8 p-8">
       <div className="flex flex-col items-center gap-4 text-center">
@@ -14,6 +22,17 @@ export default function Home() {
           Decentralized agricultural credit platform built on the Stellar network.
         </Text>
       </div>
+
+<CardContent className="flex flex-col gap-3">
+<Button
+      onClick={() =>
+        addToast({ message: "Profile saved!", variant: "success" })
+      }
+      variant="default" size="lg" className="w-full"
+    >
+      Show Toast
+    </Button>
+    </CardContent>
 
       {/* Platform Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-4xl">
