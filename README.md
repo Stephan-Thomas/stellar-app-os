@@ -35,12 +35,55 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 
 ### Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Production build (also runs type-check) |
-| `pnpm start` | Start production server |
-| `pnpm lint` | Run ESLint |
+| Command               | Description                             |
+| --------------------- | --------------------------------------- |
+| `pnpm dev`            | Start development server                |
+| `pnpm build`          | Production build (also runs type-check) |
+| `pnpm start`          | Start production server                 |
+| `pnpm lint`           | Run ESLint                              |
+| `pnpm generate-icons` | Generate PWA icons from source          |
+
+## Progressive Web App (PWA)
+
+FarmCredit is a fully functional Progressive Web App with offline support and installability.
+
+### Features
+
+- 📱 **Installable** - Add to home screen on mobile and desktop
+- 🔌 **Offline Support** - Works without internet connection
+- 🚀 **Fast Loading** - Cached assets for instant load times
+- 🔔 **Push Notifications** - Optional notification support
+- 📊 **Network Aware** - Detects and adapts to connection status
+
+### Quick Start
+
+```bash
+# Install PWA dependencies
+npm install next-pwa @ducanh2912/next-pwa workbox-window
+npm install -D @types/serviceworker sharp
+
+# Generate icons
+npm run generate-icons
+
+# Build and test
+npm run build
+npm start
+```
+
+### Documentation
+
+- [PWA Setup Guide](./PWA_SETUP.md) - Comprehensive setup and deployment
+- [Installation Guide](./INSTALLATION.md) - Quick start guide
+- [Testing Checklist](./TESTING_CHECKLIST.md) - Complete testing guide
+- [Quick Reference](./PWA_QUICK_REFERENCE.md) - Commands and tips
+
+### Testing PWA
+
+1. Build production version: `npm run build && npm start`
+2. Open DevTools → Application → Service Workers
+3. Verify service worker is active
+4. Test offline: DevTools → Network → Offline
+5. Run Lighthouse audit for PWA score
 
 ## Project Architecture
 
@@ -65,24 +108,24 @@ stellar-app-os/
 
 ### Design Hierarchy
 
-| Level | Purpose | Example |
-|-------|---------|---------|
-| **Atoms** | Single-purpose UI elements | `Button`, `Input`, `Text`, `Badge` |
-| **Molecules** | Groups of atoms working together | `Card`, `FormField` |
-| **Organisms** | Complex UI sections | `Header`, `DonationForm`, `ProjectGrid` |
-| **Templates** | Page-level structural layouts | `DashboardLayout`, `AuthLayout` |
+| Level         | Purpose                          | Example                                 |
+| ------------- | -------------------------------- | --------------------------------------- |
+| **Atoms**     | Single-purpose UI elements       | `Button`, `Input`, `Text`, `Badge`      |
+| **Molecules** | Groups of atoms working together | `Card`, `FormField`                     |
+| **Organisms** | Complex UI sections              | `Header`, `DonationForm`, `ProjectGrid` |
+| **Templates** | Page-level structural layouts    | `DashboardLayout`, `AuthLayout`         |
 
 ### Stellar Color Tokens
 
 These brand colors are defined in `app/globals.css` and available as Tailwind classes:
 
-| Token | Value | Tailwind Class |
-|-------|-------|----------------|
-| Stellar Blue | `#14B6E7` | `bg-stellar-blue`, `text-stellar-blue` |
+| Token          | Value     | Tailwind Class                             |
+| -------------- | --------- | ------------------------------------------ |
+| Stellar Blue   | `#14B6E7` | `bg-stellar-blue`, `text-stellar-blue`     |
 | Stellar Purple | `#3E1BDB` | `bg-stellar-purple`, `text-stellar-purple` |
-| Stellar Navy | `#0D0B21` | `bg-stellar-navy`, `text-stellar-navy` |
-| Stellar Cyan | `#00C2FF` | `bg-stellar-cyan`, `text-stellar-cyan` |
-| Stellar Green | `#00B36B` | `bg-stellar-green`, `text-stellar-green` |
+| Stellar Navy   | `#0D0B21` | `bg-stellar-navy`, `text-stellar-navy`     |
+| Stellar Cyan   | `#00C2FF` | `bg-stellar-cyan`, `text-stellar-cyan`     |
+| Stellar Green  | `#00B36B` | `bg-stellar-green`, `text-stellar-green`   |
 
 ### Import Convention
 
@@ -90,11 +133,11 @@ These brand colors are defined in `app/globals.css` and available as Tailwind cl
 
 ```tsx
 // Correct
-import { Button } from "@/components/atoms/Button";
-import { Card, CardHeader } from "@/components/molecules/Card";
+import { Button } from '@/components/atoms/Button';
+import { Card, CardHeader } from '@/components/molecules/Card';
 
 // Wrong — do not use index.ts barrel exports
-import { Button } from "@/components/atoms";
+import { Button } from '@/components/atoms';
 ```
 
 ---
@@ -116,6 +159,7 @@ git checkout -b feat/<issue-number>-<short-description>
 ```
 
 Branch naming examples:
+
 - `feat/42-wallet-connect-modal`
 - `fix/78-rate-limit-toast`
 - `docs/107-contributing-guide`
@@ -144,18 +188,18 @@ This project enforces **Conventional Commits** and **atomic commits**.
 
 #### Allowed Types
 
-| Type | When to use |
-|------|-------------|
-| `feat` | New feature or component |
-| `fix` | Bug fix |
-| `docs` | Documentation only |
-| `style` | Formatting, no logic change |
+| Type       | When to use                            |
+| ---------- | -------------------------------------- |
+| `feat`     | New feature or component               |
+| `fix`      | Bug fix                                |
+| `docs`     | Documentation only                     |
+| `style`    | Formatting, no logic change            |
 | `refactor` | Code restructuring, no behavior change |
-| `perf` | Performance improvement |
-| `test` | Adding or updating tests |
-| `build` | Build system or dependency changes |
-| `ci` | CI configuration changes |
-| `chore` | Maintenance tasks |
+| `perf`     | Performance improvement                |
+| `test`     | Adding or updating tests               |
+| `build`    | Build system or dependency changes     |
+| `ci`       | CI configuration changes               |
+| `chore`    | Maintenance tasks                      |
 
 #### Allowed Scopes
 
@@ -179,11 +223,13 @@ refactor(dashboard): extract tab components into separate files
 4. **Order matters** — foundation first, then features, then polish
 
 **Bad example** (one giant commit):
+
 ```
 feat: add dashboard with tabs, fix header bug, update colors
 ```
 
 **Good example** (atomic):
+
 ```
 feat(dashboard): create dashboard page layout
 feat(dashboard): add overview tab component
@@ -225,25 +271,33 @@ When you open a PR, the template will auto-populate. Fill out every section:
 
 ```markdown
 ## Summary
+
 <!-- 1-3 sentences: What does this PR do and why? -->
 
 ## Related Issue
+
 Closes #<issue-number>
 
 ## What Was Implemented
+
 <!-- Detailed list of what was built/changed -->
+
 - [ ] Component X created
 - [ ] Styling applied with Stellar tokens
 - [ ] Responsive on mobile
 
 ## Implementation Details
+
 <!-- Key decisions, patterns used, trade-offs -->
 
 ## Screenshots / Recordings
+
 <!-- REQUIRED: Screen recording of your implementation -->
 
 ## How to Test
+
 <!-- Step-by-step for reviewers -->
+
 1. Checkout this branch
 2. Run `pnpm dev`
 3. Navigate to /path
