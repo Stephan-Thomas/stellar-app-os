@@ -51,7 +51,8 @@ export function CreditRow({ credit, onTrade, onRetire }: CreditRowProps) {
             Total Value
           </Text>
           <Text variant="body" as="p" className="font-semibold text-stellar-blue">
-            ${credit.totalValue.toLocaleString('en-US', {
+            $
+            {credit.totalValue.toLocaleString('en-US', {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             })}

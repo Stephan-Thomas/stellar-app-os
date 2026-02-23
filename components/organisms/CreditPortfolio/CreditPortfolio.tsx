@@ -5,7 +5,13 @@ import { useRouter } from 'next/navigation';
 import { TrendingUp, RefreshCw, AlertCircle, Wallet } from 'lucide-react';
 import { Button } from '@/components/atoms/Button';
 import { Text } from '@/components/atoms/Text';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/molecules/Card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/molecules/Card';
 import { CreditRow } from '@/components/molecules/CreditRow';
 import { useCreditPortfolio } from '@/hooks/useCreditPortfolio';
 import { useWalletContext } from '@/contexts/WalletContext';
@@ -52,7 +58,10 @@ export function CreditPortfolio() {
     return (
       <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900 dark:bg-red-900/20">
         <div className="flex items-start gap-3">
-          <AlertCircle className="mt-0.5 h-5 w-5 text-red-600 dark:text-red-400" aria-hidden="true" />
+          <AlertCircle
+            className="mt-0.5 h-5 w-5 text-red-600 dark:text-red-400"
+            aria-hidden="true"
+          />
           <div>
             <Text variant="body" as="p" className="font-semibold text-red-800 dark:text-red-200">
               Failed to Load Portfolio
@@ -107,9 +116,7 @@ export function CreditPortfolio() {
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <CardTitle>Your Carbon Credits</CardTitle>
-            <CardDescription>
-              Manage your portfolio of verified carbon credits
-            </CardDescription>
+            <CardDescription>Manage your portfolio of verified carbon credits</CardDescription>
           </div>
           <Button
             stellar="primary"
