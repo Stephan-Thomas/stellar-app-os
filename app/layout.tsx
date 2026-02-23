@@ -8,6 +8,11 @@ import { ToastProvider } from "@/components/ui/toast/toast-provider";
 
 
 
+
+import { ToastProvider } from "@/components/ui/toast/toast-provider";
+
+
+
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
@@ -63,6 +68,7 @@ export default function RootLayout({
        <ToastProvider>{children}</ToastProvider>
         {children}
         <Footer />
+       <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
   );
