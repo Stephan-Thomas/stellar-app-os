@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { TrendingUp, RefreshCw, AlertCircle, Wallet } from 'lucide-react';
 import { Button } from '@/components/atoms/Button';
@@ -19,6 +19,25 @@ import type { CreditHolding } from '@/lib/types/credits';
 import { cn } from '@/lib/utils';
 
 export function CreditPortfolio() {
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Defer the entire component until we're on the client
+  if (!isClient) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-stellar-blue/30 bg-stellar-blue/5 px-6 py-12 text-center">
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-stellar-blue/30 border-t-stellar-blue" />
+      </div>
+    );
+  }
+
+  return <CreditPortfolioContent />;
+}
+
+function CreditPortfolioContent() {
   const { wallet } = useWalletContext();
   const { credits, stats, isLoading, error, refreshPortfolio } = useCreditPortfolio(
     wallet?.publicKey || null
