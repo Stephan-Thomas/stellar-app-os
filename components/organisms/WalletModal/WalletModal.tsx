@@ -47,7 +47,7 @@ const WALLET_DESCRIPTIONS: Record<WalletType, string> = {
 interface WalletModalProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  onSuccess?: (publicKey: string) => void;
+  onSuccess?: () => void;
 }
 
 interface ConnectionError {
@@ -56,7 +56,7 @@ interface ConnectionError {
 }
 
 export function WalletModal({ isOpen, onOpenChange, onSuccess }: WalletModalProps) {
-  const { wallet, connect, isLoading: contextLoading, error: contextError } = useWalletContext();
+  const { connect, isLoading: contextLoading, error: contextError } = useWalletContext();
   const [connectingWallet, setConnectingWallet] = useState<WalletType | null>(null);
   const [freighterInstalled, setFreighterInstalled] = useState(false);
   const [connectionError, setConnectionError] = useState<ConnectionError | null>(null);
@@ -97,11 +97,11 @@ export function WalletModal({ isOpen, onOpenChange, onSuccess }: WalletModalProp
       setConnectionError(null);
 
       try {
-        await connect(walletType, 'testnet');
+        await connect();
         setShowSuccess(true);
         setTimeout(() => {
           onOpenChange(false);
-          onSuccess?.(wallet?.publicKey || '');
+          onSuccess?.();
         }, 1500);
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to connect wallet';
@@ -118,7 +118,7 @@ export function WalletModal({ isOpen, onOpenChange, onSuccess }: WalletModalProp
         setConnectingWallet(null);
       }
     },
-    [connect, onOpenChange, onSuccess, wallet?.publicKey]
+    [connect, onOpenChange, onSuccess]
   );
 
   const handleOpenChange = useCallback(
@@ -241,7 +241,7 @@ interface WalletOptionCardProps {
 }
 
 function WalletOptionCard({
-  walletType,
+  _walletType,
   icon,
   name,
   description,
