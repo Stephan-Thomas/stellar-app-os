@@ -1,7 +1,10 @@
-import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import { Header } from "@/components/organisms/Header/Header";
+import { Footer } from "@/components/organisms/Footer/Footer";
+import "./globals.css";
+import { WalletProviderWrapper } from "@/components/providers/WalletProviderWrapper";
 import './globals.css';
-import { Footer } from '@/components/organisms/Footer/Footer';
 
 
 import { ToastProvider } from "@/components/ui/toast/toast-provider";
@@ -60,9 +63,13 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
-       <ToastProvider>{children}</ToastProvider>
-        {children}
-        <Footer />
+       <ToastProvider>
+        <WalletProviderWrapper>
+          <Header />
+          {children}
+          <Footer />
+        </WalletProviderWrapper>
+          </ToastProvider>
       </body>
     </html>
   );

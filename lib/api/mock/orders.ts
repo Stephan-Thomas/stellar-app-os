@@ -1,4 +1,4 @@
-import { Order, OrderType, PaginatedOrders } from '@/lib/types/order';
+import type { Order, OrderType, PaginatedOrders } from '@/lib/types/order';
 
 const PROJECTS = [
   { id: 'proj-001', name: 'Amazon Rainforest Reforestation' },
