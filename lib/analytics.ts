@@ -10,10 +10,11 @@ export interface AnalyticsEvent {
 
 /**
  * Track an analytics event
- * @param event - Event name
- * @param properties - Optional event properties
+ * @param _event - Event name
+ * @param _properties - Optional event properties
  */
-export function trackEvent(): void {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function trackEvent(_event: string, _properties?: Record<string, unknown>): void {
   if (typeof window === 'undefined') {
     return;
   }
@@ -29,6 +30,8 @@ export function trackEvent(): void {
 
     // Log to console for development
     if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.debug('[Analytics]', event, properties);
     }
 
     // Example: Send to analytics service
