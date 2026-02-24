@@ -12,6 +12,11 @@ export type VerificationStatus =
   | 'Plan Vivo'
   | 'Pending';
 
+export interface ProjectCoordinates {
+  latitude: number;
+  longitude: number;
+}
+
 export interface CarbonProject {
   id: string;
   name: string;
@@ -22,6 +27,7 @@ export interface CarbonProject {
   isOutOfStock: boolean;
   type: ProjectType;
   location: string;
+  coordinates: ProjectCoordinates;
   coBenefits: string[];
   verificationStatus: VerificationStatus;
 }
@@ -34,5 +40,5 @@ export interface CreditSelectionState {
 
 export interface CreditSelectionProps {
   projects: CarbonProject[];
-  onSelectionChange?: (selection: CreditSelectionState) => void;
+  onSelectionChange?: (newSelection: CreditSelectionState) => void;
 }

@@ -3,6 +3,7 @@ import { Button } from '@/components/atoms/Button';
 import { Text } from '@/components/atoms/Text';
 import { Badge } from '@/components/atoms/Badge';
 import { Counter } from '@/components/atoms/Counter';
+import { OnboardingTour } from '@/components/organisms/OnboardingTour';
 import {
   Card,
   CardHeader,
@@ -10,7 +11,6 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/molecules/Card';
-import { OnboardingTour } from '@/components/organisms/OnboardingTour';
 
 export default function Home() {
   return (
@@ -73,6 +73,9 @@ export default function Home() {
             className="w-full"
           >
             <Link href="/credits/purchase">Purchase Carbon Credits</Link>
+          </Button>
+          <Button asChild variant="default" size="lg" className="w-full bg-green-500 hover:bg-green-600">
+            <Link href="/donate">Make a Donation</Link>
           </Button>
         </CardContent>
       </Card>
