@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/atoms/Button';
 import { Text } from '@/components/atoms/Text';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/molecules/Card';
@@ -23,11 +23,11 @@ export function PaymentMintingStep({
         <div className="space-y-4">
           <Text>Payment minting step - Implementation in progress</Text>
           <Text variant="muted">
-            Project: {selection.projectName}
+            Project ID: {selection.projectId || 'Not selected'}
             <br />
             Quantity: {selection.quantity} tons
             <br />
-            Total: ${selection.totalPrice.toFixed(2)}
+            Total: ${selection.calculatedPrice.toFixed(2)}
           </Text>
           {wallet && (
             <Text variant="small" className="font-mono">
