@@ -56,8 +56,6 @@ export default function SettingsPage(): React.ReactNode {
 
       <main className="bg-background">
         <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-         
-
           <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
             {/* Sidebar nav */}
             <aside className="w-full shrink-0 sm:w-48 lg:w-52">
@@ -139,8 +137,6 @@ export default function SettingsPage(): React.ReactNode {
           </div>
         </CardContent>
       </Card>
-
-      
     </div>
   );
 }

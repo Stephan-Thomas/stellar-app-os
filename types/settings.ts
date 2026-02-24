@@ -28,7 +28,6 @@ export type SettingsFormData = UserSettings & {
   confirmPassword?: string;
 };
 
-
 export type TabId = "profile" | "notifications" | "preferences" | "danger";
 
 export type NavItem = {
@@ -36,7 +35,6 @@ export type NavItem = {
   label: string;
   icon: React.ReactNode;
 };
-
 
 export const SECTION_TITLES: Record<TabId, string> = {
   profile:       "My Profile",
