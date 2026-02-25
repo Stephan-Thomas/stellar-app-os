@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/atoms/Button";
-import { Text } from "@/components/atoms/Text";
-import { MobileDrawer } from "./MobileDrawer";
-import { useWalletContext } from "@/contexts/WalletContext";
+import { useState } from 'react';
+import Link from 'next/link';
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/atoms/Button';
+import { Text } from '@/components/atoms/Text';
+import { MobileDrawer } from './MobileDrawer';
+import { useWalletContext } from '@/contexts/WalletContext';
 
 export function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -16,7 +16,7 @@ export function Header() {
     if (wallet?.publicKey) {
       disconnect();
     } else {
-      await connect("freighter");
+      await connect('freighter');
     }
   };
 
@@ -62,13 +62,13 @@ export function Header() {
           {/* Desktop Wallet Button */}
           <div className="hidden md:block">
             <Button
-              variant={wallet?.publicKey ? "outline" : "default"}
+              variant={wallet?.publicKey ? 'outline' : 'default'}
               size="sm"
               onClick={handleWalletAction}
             >
               {wallet?.publicKey
                 ? `${wallet.publicKey.slice(0, 4)}...${wallet.publicKey.slice(-4)}`
-                : "Connect Wallet"}
+                : 'Connect Wallet'}
             </Button>
           </div>
 
@@ -86,10 +86,7 @@ export function Header() {
       </header>
 
       {/* Mobile Drawer */}
-      <MobileDrawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-      />
+      <MobileDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
     </>
   );
 }

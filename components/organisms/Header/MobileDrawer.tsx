@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { X, Home, BookOpen, ShoppingCart, LayoutDashboard } from "lucide-react";
-import { Button } from "@/components/atoms/Button";
-import { Text } from "@/components/atoms/Text";
-import { useWalletContext } from "@/contexts/WalletContext";
+import { useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { X, Home, BookOpen, ShoppingCart, LayoutDashboard } from 'lucide-react';
+import { Button } from '@/components/atoms/Button';
+import { Text } from '@/components/atoms/Text';
+import { useWalletContext } from '@/contexts/WalletContext';
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -20,10 +20,10 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/blog", label: "Blog", icon: BookOpen },
-  { href: "/credits/purchase", label: "Purchase Credits", icon: ShoppingCart },
-  { href: "/dashboard/credits", label: "Dashboard", icon: LayoutDashboard },
+  { href: '/', label: 'Home', icon: Home },
+  { href: '/blog', label: 'Blog', icon: BookOpen },
+  { href: '/credits/purchase', label: 'Purchase Credits', icon: ShoppingCart },
+  { href: '/dashboard/credits', label: 'Dashboard', icon: LayoutDashboard },
 ];
 
 export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
@@ -37,7 +37,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     if (wallet?.publicKey) {
       disconnect();
     } else {
-      await connect("freighter");
+      await connect('freighter');
     }
     onClose();
   };
@@ -64,7 +64,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     const lastElement = focusableElements[focusableElements.length - 1];
 
     const handleTabKey = (event: KeyboardEvent) => {
-      if (event.key !== "Tab") return;
+      if (event.key !== 'Tab') return;
 
       if (event.shiftKey) {
         // Shift + Tab
@@ -81,8 +81,8 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       }
     };
 
-    drawer.addEventListener("keydown", handleTabKey);
-    return () => drawer.removeEventListener("keydown", handleTabKey);
+    drawer.addEventListener('keydown', handleTabKey);
+    return () => drawer.removeEventListener('keydown', handleTabKey);
   }, [isOpen]);
 
   // Handle escape key
@@ -90,25 +90,25 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     if (!isOpen) return;
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         onClose();
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
   // Prevent body scroll when drawer is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     }
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   }, [isOpen]);
 
@@ -117,7 +117,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       {/* Backdrop */}
       <div
         className={`fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={onClose}
         aria-hidden="true"
@@ -127,7 +127,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       <div
         ref={drawerRef}
         className={`fixed top-0 left-0 z-50 h-full w-[280px] bg-background border-r border-border shadow-xl transform transition-transform duration-300 ease-in-out md:hidden ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
+          isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
         role="dialog"
         aria-modal="true"
@@ -160,10 +160,10 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                 onClick={handleLinkClick}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-stellar-blue/10 text-stellar-blue"
-                    : "text-foreground hover:bg-muted hover:text-stellar-blue"
+                    ? 'bg-stellar-blue/10 text-stellar-blue'
+                    : 'text-foreground hover:bg-muted hover:text-stellar-blue'
                 }`}
-                aria-current={isActive ? "page" : undefined}
+                aria-current={isActive ? 'page' : undefined}
               >
                 <Icon className="h-5 w-5" aria-hidden="true" />
                 <span>{label}</span>
@@ -175,14 +175,14 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
         {/* Wallet Section */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border bg-background">
           <Button
-            variant={wallet?.publicKey ? "outline" : "default"}
+            variant={wallet?.publicKey ? 'outline' : 'default'}
             size="lg"
             className="w-full"
             onClick={handleWalletAction}
           >
             {wallet?.publicKey
               ? `${wallet.publicKey.slice(0, 4)}...${wallet.publicKey.slice(-4)}`
-              : "Connect Wallet"}
+              : 'Connect Wallet'}
           </Button>
           {wallet?.publicKey && (
             <Text variant="muted" className="text-xs text-center mt-2">

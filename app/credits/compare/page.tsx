@@ -11,7 +11,6 @@ export default function ComparePage() {
 
   const handleAddToCart = useCallback(
     (projectId: string) => {
-      console.log('Adding project to cart:', projectId);
       router.push(`/credits/purchase?projectId=${projectId}`);
     },
     [router]

@@ -7,7 +7,7 @@ import { WalletProviderWrapper } from "@/components/providers/WalletProviderWrap
 // import type { Metadata, Viewport } from 'next';
 // import { Inter } from 'next/font/google';
 // import './globals.css';
-
+import { ToastProvider } from '@/components/ui/toast/toast-provider';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -61,11 +61,13 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
-        <WalletProviderWrapper>
-          <Header />
-          {children}
-          <Footer />
-        </WalletProviderWrapper>
+        <ToastProvider>
+          <WalletProviderWrapper>
+            <Header />
+            {children}
+            <Footer />
+          </WalletProviderWrapper>
+        </ToastProvider>
       </body>
     </html>
   );
