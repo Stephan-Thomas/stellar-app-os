@@ -9,6 +9,7 @@ import { MobileDrawer } from '@/components/organisms/Header/MobileDrawer';
 import { LanguageSelector } from '@/components/organisms/Header/LanguageSelector';
 import { useWalletContext } from '@/contexts/WalletContext';
 import { useAppTranslation } from '@/hooks/useTranslation';
+import ThemeToggle from '@/components/atoms/ThemeToggle';
 
 export function Header(): JSX.Element {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -74,6 +75,7 @@ export function Header(): JSX.Element {
                 ? `${wallet.publicKey.slice(0, 4)}...${wallet.publicKey.slice(-4)}`
                 : t('header.connectWallet')}
             </Button>
+          <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}

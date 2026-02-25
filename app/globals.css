@@ -201,3 +201,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Smooth theme transitions – only color properties, no layout shift */
+html,
+body {
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+/* Optional but recommended for cards, buttons, inputs, modals, alerts */
+.card,
+button,
+input,
+textarea,
+select,
+.dialog,
+.alert {
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
