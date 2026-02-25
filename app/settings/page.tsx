@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/atoms/Button';
@@ -30,16 +30,13 @@ const NAV_ITEMS: NavItem[] = [
 
 export default function SettingsPage(): React.ReactNode {
   const router = useRouter();
-<<<<<<< HEAD
   const [tourCompleted, setTourCompleted] = useState(false);
   const [activeTab, setActiveTab] = useState<TabId>('profile');
 
   useEffect(() => {
     setTourCompleted(hasCompletedOnboardingTour());
   }, []);
-=======
-  const [tourCompleted, setTourCompleted] = useState(() => hasCompletedOnboardingTour());
->>>>>>> 13d7719af5403a71fe1b8cf5e7d41a47a4a05c5e
+
 
   const restartTour = () => {
     requestOnboardingTourRestart();
