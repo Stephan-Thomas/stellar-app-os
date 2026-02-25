@@ -6,6 +6,8 @@ import { Footer } from '@/components/organisms/Footer/Footer';
 import { WalletProviderWrapper } from '@/components/providers/WalletProviderWrapper';
 import { ToastProvider } from '@/components/ui/toast/toast-provider';
 import { I18nProvider } from '@/components/providers/I18nProvider';
+import type { ReactNode } from 'react';
+import { CookieBanner } from '@/components/molecules/CookieBanner';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -64,6 +66,7 @@ export default function RootLayout({
             <WalletProviderWrapper>
               <Header />
               {children}
+              <CookieBanner />
               <Footer />
             </WalletProviderWrapper>
           </ToastProvider>
