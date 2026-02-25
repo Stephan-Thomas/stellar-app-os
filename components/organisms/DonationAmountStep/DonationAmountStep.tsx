@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/atoms/Button';
 import { Text } from '@/components/atoms/Text';
 import { Input } from '@/components/atoms/Input';
 import { Badge } from '@/components/atoms/Badge';
 import { ProgressStepper } from '@/components/molecules/ProgressStepper/ProgressStepper';
+import { useDonationContext } from '@/contexts/DonationContext';
 import { Trees, Mountain, Leaf } from 'lucide-react';
 
 const QUICK_AMOUNTS = [10, 25, 50, 100];
@@ -31,7 +32,9 @@ const formatNumber = (num: number): string => {
 };
 
 export function DonationAmountStep() {
+  const router = useRouter();
   const searchParams = useSearchParams();
+  const { setAmount: persistAmount, setIsMonthly: persistIsMonthly } = useDonationContext();
 
   // Initialize from URL params if available
   const [selectedAmount, setSelectedAmount] = useState<number | null>(() => {
@@ -106,15 +109,15 @@ export function DonationAmountStep() {
 
   const handleContinue = () => {
     if (isValidAmount) {
-      // Persist state to URL params
-      const params = new URLSearchParams();
-      params.set('amount', currentAmount.toString());
-      params.set('monthly', isMonthly.toString());
+      persistAmount(currentAmount);
+      persistIsMonthly(isMonthly);
+      router.push('/donate/info');
     }
   };
 
   const steps = [
     { id: 'amount', label: 'AMOUNT', path: '/donate', status: 'current' as const },
+    { id: 'info', label: 'YOUR INFO', path: '/donate/info', status: 'upcoming' as const },
     { id: 'payment', label: 'PAYMENT', path: '/donate/payment', status: 'upcoming' as const },
     { id: 'success', label: 'SUCCESS', path: '/donate/success', status: 'upcoming' as const },
   ];
@@ -257,9 +260,9 @@ export function DonationAmountStep() {
               disabled={!isValidAmount}
               size="lg"
               className="w-full h-14 text-lg bg-stellar-green hover:bg-stellar-green/90 disabled:bg-gray-300 disabled:cursor-not-allowed"
-              aria-label={`Continue to payment with ${formatCurrency(currentAmount)} donation`}
+              aria-label={`Continue with ${formatCurrency(currentAmount)} donation`}
             >
-              Continue to Payment →
+              Continue →
             </Button>
           </div>
         </div>

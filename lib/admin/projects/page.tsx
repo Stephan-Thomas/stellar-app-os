@@ -10,6 +10,7 @@ export default function AdminProjectsPage(): ReactNode {
         onProjectUpdate={(payload) => {
           console.info('Project update:', payload);
           // TODO: Implement API call to update projects
+          return Promise.resolve();
         }}
         onNavigateDetail={(projectId) => {
           console.info('Navigate to detail view:', projectId);

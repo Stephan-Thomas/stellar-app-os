@@ -49,10 +49,7 @@ export function getDisplayName(data: Pick<CertificateData, 'userName' | 'walletA
   return data.userName?.trim() || data.walletAddress;
 }
 
-export function generateCertificatePdf({
-  qrDataUrl,
-  data,
-}: GenerateCertificateOptions): Promise<void> {
+export function generateCertificatePdf({ qrDataUrl, data }: GenerateCertificateOptions): void {
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
   const displayName = getDisplayName(data);

@@ -8,6 +8,7 @@ import { WalletProviderWrapper } from "@/components/providers/WalletProviderWrap
 // import { Inter } from 'next/font/google';
 // import './globals.css';
 import { ToastProvider } from '@/components/ui/toast/toast-provider';
+import { I18nProvider } from '@/components/providers/I18nProvider';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -52,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,13 +62,15 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
-        <ToastProvider>
-          <WalletProviderWrapper>
-            <Header />
-            {children}
-            <Footer />
-          </WalletProviderWrapper>
-        </ToastProvider>
+        <I18nProvider>
+          <ToastProvider>
+            <WalletProviderWrapper>
+              <Header />
+              {children}
+              <Footer />
+            </WalletProviderWrapper>
+          </ToastProvider>
+        </I18nProvider>
       </body>
     </html>
   );
